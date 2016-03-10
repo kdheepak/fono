@@ -15,8 +15,8 @@ Clone this repository
 * Open a terminal
 * Change directory to where you would like to clone this repository
 
-    cd ~/GitRepos/
-    git clone https://github.com/kdheepak89/foo.git
+        cd ~/GitRepos/
+        git clone https://github.com/kdheepak89/foo.git
 
 #### Environment
 
