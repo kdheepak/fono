@@ -20,31 +20,7 @@ def display(_results):
 
 if __name__ == '__main__':
 
-    price = {
-        ('website1', 'item1'): 1, # dollars
-        ('website2', 'item1'): 2, # dollars
-        ('website1', 'item2'): 1, # dollars
-        ('website2', 'item2'): 2, # dollars
-        ('website1', 'item3'): 1, # dollars
-        ('website2', 'item3'): 2, # dollars
-        ('website1', 'item4'): 1, # dollars
-        ('website2', 'item4'): 2, # dollars
-        ('website1', 'item5'): 1, # dollars
-        ('website2', 'item5'): 2, # dollars
-            }
-
-    quantity = {
-        'item1': 10, # number of items
-        'item2': 0, # number of items
-        'item3': 0, # number of items
-        'item4': 0, # number of items
-        'item5': 0, # number of items
-               }
-
-    shipping = {
-        'website1': 21,
-        'website2': 10
-    }
+    from data import price, quantity, shipping
 
     model = ReferenceModel.create_model(price, quantity, shipping)
 
