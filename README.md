@@ -35,17 +35,17 @@ Open a terminal and run the following
 * Open a terminal, and change directory to the root of the folder
 * Run the following to activate an environment
 
-    source activate foo-env
+        source activate foo-env
 
 * Run the following to find the optimal order using input in a folder
 
-    python foo/run.py --folder foo/data
+        python foo/run.py --folder foo/data
 
 OR
 
 * Run the following to find the optimal order using input from individual files
 
-    python foo/run.py --quantity foo/data/quantity.csv --price foo/data/price.csv --shipping foo/data/shipping.csv
+        python foo/run.py --quantity foo/data/quantity.csv --price foo/data/price.csv --shipping foo/data/shipping.csv
 
 
 Three files are required to find the optimal order
@@ -54,9 +54,11 @@ Three files are required to find the optimal order
 * quantity.csv
 * shipping.csv
 
-Prices contains the price of an item when purchased from a website
-Quantity contains the number of items required
-Shipping contains the shipping cost from the individual websites
+Prices contains the price of an item when purchased from a website.
+
+Quantity contains the number of items required.
+
+Shipping contains the shipping cost from the individual websites.
 
 ## Troubleshooting
 
