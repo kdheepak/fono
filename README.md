@@ -63,3 +63,8 @@ Shipping contains the shipping cost from the individual websites
 * Names of items in quantity.csv has to match prices.csv
 * Names of websites in shipping.csv has to match prices.csv
 * Remove all empty lines
+
+## Contribution
+
+Feel free to submit a pull request.
+Thanks for Matt for the inspiration.
