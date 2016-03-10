@@ -1,0 +1,22 @@
+name: foo-env
+dependencies:
+- click=6.3=py27_0
+- openssl=1.0.2g=0
+- pip=8.1.0=py27_0
+- python=2.7.11=0
+- readline=6.2=2
+- setuptools=20.2.2=py27_0
+- sqlite=3.9.2=0
+- tk=8.5.18=0
+- wheel=0.29.0=py27_0
+- zlib=1.2.8=0
+- pip:
+  - greenlet==0.4.9
+  - jinja2==2.8
+  - markupsafe==0.23
+  - nose==1.3.7
+  - ply==3.8
+  - pyomo==4.2.10784
+  - pyutilib==5.2.3601
+  - six==1.10.0
+
