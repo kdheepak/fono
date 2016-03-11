@@ -10,7 +10,7 @@ __title__ = "fono"
 __summary__ = "A python package to find optimal number of orders"
 __uri__ = "https://github.com/kdheepak89/fono"
 
-__version__ = "0.1.8"
+__version__ = "0.1.9"
 
 __author__ = "Dheepak Krishnamurthy"
 __email__ = "kdheepak89@gmail.com"

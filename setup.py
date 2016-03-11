@@ -27,7 +27,7 @@ setup(
     author=fono.__author__,
     author_email=fono.__email__,
 
-    packages=["fono"],
+    packages=["fono", "fono.data"],
 
     entry_points={
         "console_scripts": [
