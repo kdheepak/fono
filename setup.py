@@ -45,7 +45,7 @@ setup(
   url = 'https://github.com/kdheepak89/fono', # use the URL to the github repo
   download_url = 'https://github.com/kdheepak89/fono/tarball/0.1', # I'll explain this in a second
   keywords = ['pyomo', 'operations'], # arbitrary keywords
-  license = ['LICENSE'],
+  license = ['Revised BSD License'],
   install_requires = reqs,
   extras_require = extras_require,
   entry_points={'console_scripts': [
