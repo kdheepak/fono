@@ -1,4 +1,4 @@
-name: foo-env
+name: fono-env
 dependencies:
 - click=6.3=py27_0
 - openssl=1.0.2g=0

@@ -33,7 +33,7 @@ def get_input(folder, quantity_file='quantity.csv', price_file='price.csv', ship
     quantity = get_quantity(os.path.join(folder_name, quantity_file))
     price = get_price(os.path.join(folder_name, price_file))
     shipping = get_shipping(os.path.join(folder_name, shipping_file))
-    
+
     return quantity, price, shipping
 
 def get_quantity(f):
@@ -56,7 +56,7 @@ def get_price(f):
         for row in reader:
             row[2] = float(row[2])
             price[(row[0], row[1])] = row[2]
-    
+
     return price
 
 def get_shipping(f):

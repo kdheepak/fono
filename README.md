@@ -1,6 +1,6 @@
-# foo - Find the Optimal Order
+# fono - Find Optimal Number of Orders
 
-Pyomo python program to calculate optimal order from websites including shipping costs (MILP)
+Pyomo python program to find number of optimal order from websites including shipping costs (MILP)
 
 ## Dependencies
 
@@ -15,17 +15,14 @@ Clone this repository
 * Open a terminal
 * Change directory to where you would like to clone this repository
 
-        cd ~/GitRepos/
-        git clone https://github.com/kdheepak89/foo.git
-
 #### Environment
 
-The below will create a python environment called `foo-env`.
+The below will create a python environment called `fono-env`.
 If you want a different environment name, open `environment.yml` and change the first line
 
 Open a terminal and run the following
 
-    cd ~/GitRepos/foo # Or change directory to the root of the folder
+    cd ~/GitRepos/fono # Or change directory to the root of the folder
     conda env create -f environment.yml
 
 ## Run
@@ -35,17 +32,17 @@ Open a terminal and run the following
 * Open a terminal, and change directory to the root of the folder
 * Run the following to activate an environment
 
-        source activate foo-env
+        source activate fono-env
 
 * Run the following to find the optimal order using input in a folder
 
-        python foo/run.py --folder foo/data
+        python fono/run.py --folder fono/data
 
 OR
 
 * Run the following to find the optimal order using input from individual files
 
-        python foo/run.py --quantity foo/data/quantity.csv --price foo/data/price.csv --shipping foo/data/shipping.csv
+        python fono/run.py --quantity fono/data/quantity.csv --price fono/data/price.csv --shipping fono/data/shipping.csv
 
 
 Three files are required to find the optimal order
