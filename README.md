@@ -2,7 +2,7 @@
 
 Pyomo python program to find number of optimal order from websites including shipping costs (MILP)
 
-![](https://raw.githubusercontent.com/kdheepak89/fono/master/screenshot1.png)
+![](https://raw.githubusercontent.com/kdheepak89/fono/master/screenshots/screenshot1.png)
 
 ## Install
 
@@ -27,7 +27,7 @@ OR
 
         fono --folder fono/data
 
-![](https://raw.githubusercontent.com/kdheepak89/fono/master/screenshot2.png)
+![](https://raw.githubusercontent.com/kdheepak89/fono/master/screenshots/screenshot2.png)
 
 
 Use help
