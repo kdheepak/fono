@@ -22,26 +22,25 @@ def main(**kwargs):
     """
 
     try:
-
         if kwargs['folder'] is None and kwargs['quantity'] is None and kwargs['price'] is None and kwargs['shipping'] is None:
             help_str = "{}".format(click.get_current_context().get_help())
             click.secho(help_str)
             click.get_current_context().exit()
 
-        if kwargs['folder']:
-            price, quantity, shipping = data.get_input(kwargs['folder'])
-        elif kwargs['quantity'] and kwargs['price'] and kwargs['shipping']:
-            quantity = data.get_quantity(kwargs['quantity'])
-            price = data.get_price(kwargs['price'])
-            shipping = data.get_shipping(kwargs['shipping'])
-
         def show_item(item):
             if item is not None:
                 return(item)
 
-        with click.progressbar(('Get data', 'Creating model', 'Solving'), item_show_func=show_item, label='fono') as bar:
+        with click.progressbar(('Getting data', 'Creating model', 'Solving', 'Finished'), item_show_func=show_item, label='fono') as bar:
             for item in bar:
-                if item == 'Creating model':
+                if item == 'Getting data':
+                    if kwargs['folder']:
+                        price, quantity, shipping = data.get_input(kwargs['folder'])
+                    elif kwargs['quantity'] and kwargs['price'] and kwargs['shipping']:
+                        quantity = data.get_quantity(kwargs['quantity'])
+                        price = data.get_price(kwargs['price'])
+                        shipping = data.get_shipping(kwargs['shipping'])
+                elif item == 'Creating model':
                     model = ReferenceModel.create_model(price, quantity, shipping)
                 elif item == 'Solving':
                     solve.solve_instance(model), model
