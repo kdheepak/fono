@@ -2,48 +2,32 @@
 
 Pyomo python program to find number of optimal order from websites including shipping costs (MILP)
 
-## Dependencies
+## Install
+
+    pip install fono
+    pip install fono --upgrade
+
+### Dependencies
 
 * Install [`glpk`](https://www.gnu.org/software/glpk/)
 
         brew install glpk # osx
 
-* [Anaconda 2.7](https://www.continuum.io/downloads)
-
-Clone this repository
-
-* Open a terminal
-* Change directory to where you would like to clone this repository
-
-#### Environment
-
-The below will create a python environment called `fono-env`.
-If you want a different environment name, open `environment.yml` and change the first line
-
-Open a terminal and run the following
-
-    cd ~/GitRepos/fono # Or change directory to the root of the folder
-    conda env create -f environment.yml
-
 ## Run
-
-#### Activate the environment
-
-* Open a terminal, and change directory to the root of the folder
-* Run the following to activate an environment
-
-        source activate fono-env
 
 * Run the following to find the optimal order using input in a folder
 
-        python fono/run.py --folder fono/data
+        fono --folder fono/data
 
 OR
 
 * Run the following to find the optimal order using input from individual files
 
-        python fono/run.py --quantity fono/data/quantity.csv --price fono/data/price.csv --shipping fono/data/shipping.csv
+        fono --quantity fono/data/quantity.csv --price fono/data/price.csv --shipping fono/data/shipping.csv
 
+* Use help
+
+        fono --help
 
 Three files are required to find the optimal order
 
@@ -66,4 +50,4 @@ Shipping contains the shipping cost from the individual websites.
 ## Contribution
 
 Feel free to submit a pull request.
-Thanks for Matt for the inspiration.
+Thanks to Matt for the inspiration.

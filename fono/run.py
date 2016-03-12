@@ -15,11 +15,15 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 @click.option('--quantity', type=click.Path(), help='Path to quantity.csv file')
 @click.option('--price', type=click.Path(), help='Path to price.csv file')
 @click.option('--shipping', type=click.Path(), help='Path to shipping.csv file')
+@click.option('--color', default='white', help='Color of solution (e.g. --color=red)')
+@click.option('--fono_color', default='green', help='Color of solution (e.g. --fono_color=blue)')
 @click.version_option(version.__version__, '-v', '--version')
 def main(**kwargs):
     """
     'Find Optimal Number of Orders' aka fono
     """
+    color = kwargs.pop('color')
+    fono_color = kwargs.pop('fono_color')
 
     try:
         if kwargs['folder'] is None and kwargs['quantity'] is None and kwargs['price'] is None and kwargs['shipping'] is None:
@@ -31,7 +35,11 @@ def main(**kwargs):
             if item is not None:
                 return(item)
 
-        with click.progressbar(('Getting data', 'Creating model', 'Solving', 'Finished'), item_show_func=show_item, label='fono') as bar:
+        click.echo("")
+        click.secho("Find the Optimal Number of Orders:", fg=fono_color, bold=True)
+        click.echo("")
+
+        with click.progressbar(('Getting data', 'Creating model', 'Solving', 'Finished'), label='fono:', item_show_func=show_item) as bar:
             for item in bar:
                 if item == 'Getting data':
                     if kwargs['folder']:
@@ -49,19 +57,28 @@ def main(**kwargs):
 
         click.echo("")
 
-        click.secho("fono results:", fg='green', bold=True)
+        click.secho("fono results:", fg=fono_color, bold=True)
 
         click.echo("")
 
-        for website in sorted(model.Websites):
-            for item in sorted(model.Items):
+        for item in sorted(model.Items):
+            for website in sorted(model.Websites):
                 if model.Quantity[website, item].value>0:
                     click.echo("Buy ", nl=False)
-                    click.secho("{} ".format(model.Quantity[website, item].value), bold=True, nl=False)
+                    click.secho("{} ".format(int(model.Quantity[website, item].value)),
+                            fg=color, bold=True, nl=False)
                     click.echo("item(s) of ", nl=False)
-                    click.secho("{} ".format(item), bold=True, nl=False)
+                    click.secho("{} ".format(item),
+                            fg=color, bold=True, nl=False)
                     click.echo("from ", nl=False)
-                    click.secho("{}.".format(website), bold=True)
+                    click.secho("{} ".format(website),
+                            fg=color, bold=True, nl=False)
+                    click.echo("for a total of ", nl=False)
+                    click.secho("{} ".format(price[(website, item)] * model.Quantity[website, item].value),
+                            fg=color, bold=True, nl=False)
+                    click.echo("dollars", nl=False)
+                    click.secho(".".format(website))
+
 
         click.echo("")
 
@@ -71,7 +88,9 @@ def main(**kwargs):
 
         click.secho("Total product costs = {}".format(item_costs), bold=True)
         click.secho("Total shipping costs = {}".format(shipping_costs), bold=True)
-        click.secho("Total costs = {}".format(total_costs), fg='green', bold=True)
+        click.echo("")
+        click.secho("Total costs = {}".format(total_costs), fg=fono_color, bold=True)
+        click.echo("")
 
     except Exception as e:
         click.echo('')
