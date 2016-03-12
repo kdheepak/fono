@@ -17,19 +17,22 @@ Pyomo python program to find number of optimal order from websites including shi
 
 ## Run
 
-* Run the following to find the optimal order using input in a folder
-
-        fono --folder fono/data
-
-OR
-
 * Run the following to find the optimal order using input from individual files
 
         fono --quantity fono/data/quantity.csv --price fono/data/price.csv --shipping fono/data/shipping.csv
 
-* Use help
+OR
 
-        fono --help
+* Run the following to find the optimal order using input in a folder
+
+        fono --folder fono/data
+
+![](https://raw.githubusercontent.com/kdheepak89/fono/master/screenshot2.png)
+
+
+Use help
+
+    fono --help
 
 Three files are required to find the optimal order
 
