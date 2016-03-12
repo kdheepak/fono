@@ -86,10 +86,10 @@ def main(**kwargs):
         shipping_costs = model.Cost['Shipping'].value
         total_costs = item_costs + shipping_costs
 
-        click.secho("Total product costs = {}".format(item_costs), bold=True)
-        click.secho("Total shipping costs = {}".format(shipping_costs), bold=True)
+        click.secho("Total product costs = {} dollars".format(item_costs), bold=True)
+        click.secho("Total shipping costs = {} dollars".format(shipping_costs), bold=True)
         click.echo("")
-        click.secho("Total costs = {}".format(total_costs), fg=fono_color, bold=True)
+        click.secho("Total costs = {} dollars".format(total_costs), fg=fono_color, bold=True)
         click.echo("")
 
     except Exception as e:
