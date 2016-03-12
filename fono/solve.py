@@ -1,6 +1,6 @@
 import ReferenceModel
 
-def solve(instance, solver='glpk', mipgap=0.01):
+def solve_instance(instance, solver='glpk', mipgap=0.01):
     solver = ReferenceModel.SolverFactory(solver)
     solver.options['mipgap'] = mipgap
     instance.preprocess()
@@ -23,4 +23,4 @@ if __name__ == '__main__':
 
     model = ReferenceModel.create_model(price, quantity, shipping)
 
-    display(solve(model))
+    display(solve_instance(model))

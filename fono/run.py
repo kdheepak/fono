@@ -29,7 +29,7 @@ def main(**kwargs):
             click.get_current_context().exit()
 
         if kwargs['folder']:
-            quantity, price, shipping = data.get_input(kwargs['folder'])
+            price, quantity, shipping = data.get_input(kwargs['folder'])
         elif kwargs['quantity'] and kwargs['price'] and kwargs['shipping']:
             quantity = data.get_quantity(kwargs['quantity'])
             price = data.get_price(kwargs['price'])
@@ -37,7 +37,7 @@ def main(**kwargs):
 
         model = ReferenceModel.create_model(price, quantity, shipping)
 
-        solve.display(solve.solve(model))
+        solve.display(solve.solve_instance(model))
 
     except Exception as e:
         click.echo('')

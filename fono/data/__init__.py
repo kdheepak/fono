@@ -34,7 +34,7 @@ def get_input(folder, quantity_file='quantity.csv', price_file='price.csv', ship
     price = get_price(os.path.join(folder_name, price_file))
     shipping = get_shipping(os.path.join(folder_name, shipping_file))
 
-    return quantity, price, shipping
+    return price, quantity, shipping
 
 def get_quantity(f):
     quantity = {}
