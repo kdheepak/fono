@@ -37,7 +37,7 @@ def main(**kwargs):
 
         model = ReferenceModel.create_model(price, quantity, shipping)
 
-        solve.display(solve.solve_instance(model))
+        solve.display_results(solve.solve_instance(model), model)
 
     except Exception as e:
         click.echo('')
