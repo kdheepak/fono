@@ -35,12 +35,18 @@ def main(**kwargs):
             price = data.get_price(kwargs['price'])
             shipping = data.get_shipping(kwargs['shipping'])
 
-        model = ReferenceModel.create_model(price, quantity, shipping)
+        def show_item(item):
+            if item is not None:
+                return(item)
 
-        click.secho("Solving...", fg='blue', bold=True)
+        with click.progressbar(('Get data', 'Creating model', 'Solving'), item_show_func=show_item, label='fono') as bar:
+            for item in bar:
+                if item == 'Creating model':
+                    model = ReferenceModel.create_model(price, quantity, shipping)
+                elif item == 'Solving':
+                    solve.solve_instance(model), model
 
         # solve.display_results(solve.solve_instance(model), model)
-        solve.solve_instance(model), model
 
         click.echo("")
 
