@@ -15,8 +15,8 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 @click.option('--quantity', type=click.Path(), help='Path to quantity.csv file')
 @click.option('--price', type=click.Path(), help='Path to price.csv file')
 @click.option('--shipping', type=click.Path(), help='Path to shipping.csv file')
-@click.option('--color', default='white', help='Color of solution (e.g. --color=red)')
-@click.option('--fono_color', default='green', help='Color of solution (e.g. --fono_color=blue)')
+@click.option('--color', hidden=True, default='white', help='Color of solution (e.g. --color=red)')
+@click.option('--fono_color', hidden=True, default='green', help='Color of solution (e.g. --fono_color=blue)')
 @click.version_option(version.__version__, '-v', '--version')
 def main(**kwargs):
     """

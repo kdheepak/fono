@@ -36,4 +36,8 @@ setup(
     },
 
     install_requires=install_requires,
+
+    dependency_links=[
+        "git+ssh://git@github.com/kdheepak89/click.git@7.0#egg=click-7.0"
+    ]
 )
