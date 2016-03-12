@@ -57,6 +57,10 @@ def get_price(f):
             row[2] = float(row[2])
             price[(row[0], row[1])] = row[2]
 
+    for website in set([w for w, i in price]):
+        for item in set([i for w, i in price]):
+            price[(website, item)] = price.get((website, item), 9999)
+
     return price
 
 def get_shipping(f):
