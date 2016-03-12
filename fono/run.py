@@ -5,6 +5,7 @@ import click
 import solve
 import data
 import ReferenceModel
+import version
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
@@ -14,6 +15,7 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 @click.option('--quantity', type=click.Path(), help='Path to quantity.csv file')
 @click.option('--price', type=click.Path(), help='Path to price.csv file')
 @click.option('--shipping', type=click.Path(), help='Path to shipping.csv file')
+@click.version_option(version.__version__, '-v', '--version')
 def main(**kwargs):
     """
     'Find Optimal Number of Orders' aka fono
