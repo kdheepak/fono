@@ -26,7 +26,7 @@ def main(**kwargs):
     fono_color = kwargs.pop('fono_color')
 
     try:
-        if kwargs['folder'] is None and kwargs['quantity'] is None and kwargs['price'] is None and kwargs['shipping'] is None:
+        if not any([kwargs[key] for key in kwargs]):
             help_str = "{}".format(click.get_current_context().get_help())
             click.secho(help_str)
             click.get_current_context().exit()
