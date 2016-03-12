@@ -59,10 +59,12 @@ def main(**kwargs):
 
         click.secho("fono results:", fg=fono_color, bold=True)
 
-        click.echo("")
-
-        for item in sorted(model.Items):
-            for website in sorted(model.Websites):
+        for website in sorted(model.Websites):
+            click.secho("")
+            click.secho("{}".format(website),
+                    fg=color, bold=True, nl=False)
+            click.secho(":")
+            for item in sorted(model.Items):
                 if model.Quantity[website, item].value>0:
                     click.echo("Buy ", nl=False)
                     click.secho("{} ".format(int(model.Quantity[website, item].value)),
@@ -70,14 +72,11 @@ def main(**kwargs):
                     click.echo("item(s) of ", nl=False)
                     click.secho("{} ".format(item),
                             fg=color, bold=True, nl=False)
-                    click.echo("from ", nl=False)
-                    click.secho("{} ".format(website),
-                            fg=color, bold=True, nl=False)
                     click.echo("for a total of ", nl=False)
                     click.secho("{} ".format(price[(website, item)] * model.Quantity[website, item].value),
                             fg=color, bold=True, nl=False)
                     click.echo("dollars", nl=False)
-                    click.secho(".".format(website))
+                    click.secho(".")
 
 
         click.echo("")
