@@ -1,8 +1,7 @@
-from pyomo.environ import *
 import ReferenceModel
 
 def solve(instance, solver='glpk', mipgap=0.01):
-    solver = SolverFactory(solver)
+    solver = ReferenceModel.SolverFactory(solver)
     solver.options['mipgap'] = mipgap
     instance.preprocess()
     _results = solver.solve(instance, suffixes=['dual'])
