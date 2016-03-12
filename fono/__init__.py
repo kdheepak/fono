@@ -1,12 +1,14 @@
-from __future__ import absolute_import, division, print_function
-from __future__ import unicode_literals
-
 __all__ = (
     "__title__", "__summary__", "__uri__", "__version__", "__author__",
     "__email__", "__license__", "__copyright__",
 )
 
-from .version import __version__
+def __get_version():
+    from os import path
+    here = path.abspath(path.dirname(__file__))
+    return(open(path.join(here, 'version.py')).read())
+
+exec(__get_version())
 
 __title__ = "fono"
 __summary__ = "A python package to find optimal number of orders"
