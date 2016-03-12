@@ -25,7 +25,7 @@ def main(**kwargs):
 
         if kwargs['folder'] is None and kwargs['quantity'] is None and kwargs['price'] is None and kwargs['shipping'] is None:
             help_str = "{}".format(click.get_current_context().get_help())
-            click.secho(help_str, color='green')
+            click.secho(help_str)
             click.get_current_context().exit()
 
         if kwargs['folder']:
@@ -37,7 +37,36 @@ def main(**kwargs):
 
         model = ReferenceModel.create_model(price, quantity, shipping)
 
-        solve.display_results(solve.solve_instance(model), model)
+        click.secho("Solving...", fg='blue', bold=True)
+
+        # solve.display_results(solve.solve_instance(model), model)
+        solve.solve_instance(model), model
+
+        click.echo("")
+
+        click.secho("fono results:", fg='green', bold=True)
+
+        click.echo("")
+
+        for website in sorted(model.Websites):
+            for item in sorted(model.Items):
+                if model.Quantity[website, item].value>0:
+                    click.echo("Buy ", nl=False)
+                    click.secho("{} ".format(model.Quantity[website, item].value), bold=True, nl=False)
+                    click.echo("item(s) of ", nl=False)
+                    click.secho("{} ".format(item), bold=True, nl=False)
+                    click.echo("from ", nl=False)
+                    click.secho("{}.".format(website), bold=True)
+
+        click.echo("")
+
+        item_costs = model.Cost['Item'].value
+        shipping_costs = model.Cost['Shipping'].value
+        total_costs = item_costs + shipping_costs
+
+        click.secho("Total product costs = {}".format(item_costs), bold=True)
+        click.secho("Total shipping costs = {}".format(shipping_costs), bold=True)
+        click.secho("Total costs = {}".format(total_costs), fg='green', bold=True)
 
     except Exception as e:
         click.echo('')
