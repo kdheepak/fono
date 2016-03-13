@@ -1,6 +1,9 @@
+"""Solve module."""
 import ReferenceModel
 
+
 def solve_instance(instance, solver='glpk', mipgap=0.01):
+    """Solve instance using SolverFactory in Pyomo."""
     solver = ReferenceModel.SolverFactory(solver)
     solver.options['mipgap'] = mipgap
     instance.preprocess()
@@ -8,14 +11,16 @@ def solve_instance(instance, solver='glpk', mipgap=0.01):
     instance.solutions.store_to(_results)
     return(_results)
 
+
 def display_results(_results, model):
+    """Display results from results.json and model."""
     print("Optimal solution:\n")
     for website in sorted(model.Websites):
         for item in sorted(model.Items):
-            if model.Quantity[website, item].value>0:
+            if model.Quantity[website, item].value > 0:
                 print("Buy {q} item(s) of {i} from {w}".format(q=int(model.Quantity[website, item].value),
-                                                    i=item,
-                                                    w=website,))
+                                                               i=item,
+                                                               w=website,))
 
     print('')
     print("Shipping Cost = {}".format(model.Cost['Shipping'].value))
