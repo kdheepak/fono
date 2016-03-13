@@ -1,3 +1,6 @@
+"""
+data module.
+
 price = {
     ('website1', 'item1'): 1,  # dollars
     ('website2', 'item1'): 2,  # dollars
@@ -23,11 +26,14 @@ shipping = {
     'website1': 21,
     'website2': 10
 }
+"""
 
 import os
 import csv
 
+
 def get_input(folder, quantity_file='quantity.csv', price_file='price.csv', shipping_file='shipping.csv'):
+    """Get input function."""
     folder_name = (os.path.abspath(folder))
 
     quantity = get_quantity(os.path.join(folder_name, quantity_file))
@@ -36,7 +42,9 @@ def get_input(folder, quantity_file='quantity.csv', price_file='price.csv', ship
 
     return price, quantity, shipping
 
+
 def get_quantity(f):
+    """Get quantity function."""
     quantity = {}
     with open(f, 'rb') as csvfile:
         reader = csv.reader(csvfile, delimiter=',')
@@ -45,10 +53,13 @@ def get_quantity(f):
             if int(row[1]) == row[1]:
                 quantity[row[0]] = row[1]
             else:
-                raise Exception("Quantity {} must be an integer".format(row[1]))
+                raise Exception(
+                    "Quantity {} must be an integer".format(row[1]))
     return quantity
 
+
 def get_price(f):
+    """Get price function."""
     price = {}
 
     with open(f, 'rb') as csvfile:
@@ -63,8 +74,9 @@ def get_price(f):
 
     return price
 
-def get_shipping(f):
 
+def get_shipping(f):
+    """Get shipping costs function."""
     shipping = {}
 
     with open(f, 'rb') as csvfile:

@@ -34,7 +34,5 @@ def display_results(_results, model):
 if __name__ == '__main__':
 
     from data import price, quantity, shipping
-
     model = ReferenceModel.create_model(price, quantity, shipping)
-
     display_results(solve_instance(model), model)
