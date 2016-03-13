@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Run module."""
 
 import click
 
@@ -19,9 +20,7 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 @click.option('--fono-color', default='green', help='Color of solution (e.g. --fono-color=blue)') # hidden=True
 @click.version_option(version.__version__, '-v', '--version')
 def main(**kwargs):
-    """
-    'Find Optimal Number of Orders' aka fono
-    """
+    """'Find Optimal Number of Orders' aka fono."""
     color = kwargs.pop('color')
     fono_color = kwargs.pop('fono_color')
 
