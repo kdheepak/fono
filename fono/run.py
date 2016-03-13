@@ -3,9 +3,9 @@
 
 import click
 
-import solve
 import data
 import ReferenceModel
+import solve
 import version
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
