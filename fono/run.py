@@ -2,7 +2,6 @@
 """Run module."""
 
 import click
-
 import data
 import ReferenceModel
 import solve
@@ -16,9 +15,7 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 @click.option('--quantity', type=click.Path(), help='Path to quantity.csv file')
 @click.option('--price', type=click.Path(), help='Path to price.csv file')
 @click.option('--shipping', type=click.Path(), help='Path to shipping.csv file')
-# hidden=True
 @click.option('--color', default='white', help='Color of solution (e.g. --color=red)')
-# hidden=True
 @click.option('--fono-color', default='green', help='Color of solution (e.g. --fono-color=blue)')
 @click.version_option(version.__version__, '-v', '--version')
 def main(**kwargs):
@@ -34,26 +31,23 @@ def main(**kwargs):
 
         def show_item(item):
             if item is not None:
-                return(item)
+                return item
 
         click.echo("")
-        click.secho("Find the Optimal Number of Orders:",
-                    fg=fono_color, bold=True)
+        click.secho("Find the Optimal Number of Orders:", fg=fono_color, bold=True)
         click.echo("")
 
         with click.progressbar(('Getting data', 'Creating model', 'Solving', 'Finished'), label='fono:', item_show_func=show_item) as bar:
             for item in bar:
                 if item == 'Getting data':
                     if kwargs['folder']:
-                        price, quantity, shipping = data.get_input(
-                            kwargs['folder'])
+                        price, quantity, shipping = data.get_input(kwargs['folder'])
                     elif kwargs['quantity'] and kwargs['price'] and kwargs['shipping']:
                         quantity = data.get_quantity(kwargs['quantity'])
                         price = data.get_price(kwargs['price'])
                         shipping = data.get_shipping(kwargs['shipping'])
                 elif item == 'Creating model':
-                    model = ReferenceModel.create_model(
-                        price, quantity, shipping)
+                    model = ReferenceModel.create_model(price, quantity, shipping)
                 elif item == 'Solving':
                     solve.solve_instance(model), model
 
@@ -65,20 +59,16 @@ def main(**kwargs):
 
         for website in sorted(model.Websites):
             click.secho("")
-            click.secho("{}".format(website),
-                        fg=color, bold=True, nl=False)
+            click.secho("{}".format(website), fg=color, bold=True, nl=False)
             click.secho(":")
             for item in sorted(model.Items):
                 if model.Quantity[website, item].value > 0:
                     click.echo("Buy ", nl=False)
-                    click.secho("{} ".format(int(model.Quantity[website, item].value)),
-                                fg=color, bold=True, nl=False)
+                    click.secho("{} ".format(int(model.Quantity[website, item].value)), fg=color, bold=True, nl=False)
                     click.echo("item(s) of ", nl=False)
-                    click.secho("{} ".format(item),
-                                fg=color, bold=True, nl=False)
+                    click.secho("{} ".format(item), fg=color, bold=True, nl=False)
                     click.echo("for a total of ", nl=False)
-                    click.secho("{} ".format(price[(website, item)] * model.Quantity[website, item].value),
-                                fg=color, bold=True, nl=False)
+                    click.secho("{} ".format(price[(website, item)] * model.Quantity[website, item].value), fg=color, bold=True, nl=False)
                     click.echo("dollars", nl=False)
                     click.secho(".")
 
@@ -88,19 +78,16 @@ def main(**kwargs):
         shipping_costs = model.Cost['Shipping'].value
         total_costs = item_costs + shipping_costs
 
-        click.secho("Total product costs = {} dollars".format(
-            item_costs), bold=True)
-        click.secho("Total shipping costs = {} dollars".format(
-            shipping_costs), bold=True)
+        click.secho("Total product costs = {} dollars".format(item_costs), bold=True)
+        click.secho("Total shipping costs = {} dollars".format(shipping_costs), bold=True)
         click.echo("")
-        click.secho("Total costs = {} dollars".format(
-            total_costs), fg=fono_color, bold=True)
+        click.secho("Total costs = {} dollars".format(total_costs), fg=fono_color, bold=True)
         click.echo("")
 
     except Exception as e:
         click.echo('')
-        raise click.ClickException(
-            "{}\n\nCheck the help (--help) on how to use fono or contact the developer.".format(e.message))
+        raise click.ClickException("{}\n\nCheck the help (--help) on how to use fono or contact the developer.".format(e.message))
+
 
 if __name__ == '__main__':
     main()
