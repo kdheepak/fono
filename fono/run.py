@@ -15,6 +15,7 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 @click.option('--quantity', type=click.Path(), help='Path to quantity.csv file')
 @click.option('--price', type=click.Path(), help='Path to price.csv file')
 @click.option('--shipping', type=click.Path(), help='Path to shipping.csv file')
+@click.option('--mipgap', type=click.FLOAT, default=0.001, help='Value of mipgap')
 @click.option('--color', default='white', help='Color of solution (e.g. --color=red)')
 @click.option('--fono-color', default='green', help='Color of solution (e.g. --fono-color=blue)')
 @click.version_option(version.__version__, '-v', '--version')
@@ -37,7 +38,10 @@ def main(**kwargs):
         click.secho("Find the Optimal Number of Orders:", fg=fono_color, bold=True)
         click.echo("")
 
-        with click.progressbar(('Getting data', 'Creating model', 'Solving', 'Finished'), label='fono:', item_show_func=show_item) as bar:
+        with click.progressbar(
+            ('Getting data', 'Creating model', 'Solving', 'Finished'),
+                label='fono:',
+                item_show_func=show_item) as bar:
             for item in bar:
                 if item == 'Getting data':
                     if kwargs['folder']:
@@ -49,7 +53,8 @@ def main(**kwargs):
                 elif item == 'Creating model':
                     model = ReferenceModel.create_model(price, quantity, shipping)
                 elif item == 'Solving':
-                    solve.solve_instance(model), model
+                    mipgap = kwargs.get('mipgap')
+                    solve.solve_instance(model, mipgap=mipgap), model
 
         # solve.display_results(solve.solve_instance(model), model)
 
@@ -68,7 +73,10 @@ def main(**kwargs):
                     click.echo("item(s) of ", nl=False)
                     click.secho("{} ".format(item), fg=color, bold=True, nl=False)
                     click.echo("for a total of ", nl=False)
-                    click.secho("{} ".format(price[(website, item)] * model.Quantity[website, item].value), fg=color, bold=True, nl=False)
+                    click.secho("{} ".format(price[(website, item)] * model.Quantity[website, item].value),
+                                fg=color,
+                                bold=True,
+                                nl=False)
                     click.echo("dollars", nl=False)
                     click.secho(".")
 
@@ -86,7 +94,8 @@ def main(**kwargs):
 
     except Exception as e:
         click.echo('')
-        raise click.ClickException("{}\n\nCheck the help (--help) on how to use fono or contact the developer.".format(e.message))
+        raise click.ClickException("{}\n\nCheck the help (--help) on how to use fono or contact the developer.".format(
+            e.message))
 
 
 if __name__ == '__main__':
